@@ -1,4 +1,4 @@
-use bevy::prelude::Color;
+use bevy::{color::Alpha, prelude::Color};
 
 use crate::ElementsError;
 
@@ -16,10 +16,10 @@ pub trait ColorFromHexExtension {
 }
 impl ColorFromHexExtension for Color {
     fn get_hex(&self) -> String {
-        let r = (self.r() * 256.0) as u8;
-        let g = (self.g() * 256.0) as u8;
-        let b = (self.b() * 256.0) as u8;
-        let a = (self.a() * 256.0) as u8;
+        let r = (self.to_linear().red * 256.0) as u8;
+        let g = (self.to_linear().green * 256.0) as u8;
+        let b = (self.to_linear().blue * 256.0) as u8;
+        let a = (self.to_linear().alpha * 256.0) as u8;
         if a == 255 {
             format!("#{r:02x}{g:02x}{b:02x}")
         } else {

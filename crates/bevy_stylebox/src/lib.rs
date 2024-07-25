@@ -34,7 +34,7 @@ impl Plugin for StyleboxPlugin {
             .sub_app_mut(RenderApp)
             .add_systems(
                 ExtractSchedule,
-                extract_stylebox.after(RenderUiSystem::ExtractNode),
+                extract_stylebox.after(RenderUiSystem::ExtractBackgrounds).after(RenderUiSystem::ExtractImages).after(RenderUiSystem::ExtractBorders).after(RenderUiSystem::ExtractText),
             );
     }
 }
@@ -439,15 +439,18 @@ pub fn extract_stylebox(
                 *entity,
                 ExtractedUiNode {
                     transform: tr * patch.transform,
-                    color: stylebox.modulate,
+                    color: stylebox.modulate.into(),
                     rect: patch.region,
-                    image: image.clone_weak().into(),
+                    image: image.clone_weak().id(),
                     atlas_size: Some(img_size),
                     clip: clip.map(|clip| clip.clip),
                     stack_index: stack_index as u32,
                     flip_x: false,
                     flip_y: false,
-                    camera_entity: Entity::PLACEHOLDER
+                    camera_entity: Entity::PLACEHOLDER,
+                    border_radius: [0.0,0.0,0.0,0.0],
+                    border: [0.0,0.0,0.0,0.0],
+                    node_type: bevy::ui::NodeType::Rect,
                 },
             );
 

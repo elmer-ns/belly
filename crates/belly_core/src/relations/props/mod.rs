@@ -156,7 +156,7 @@ macro_rules! impl_properties {
                 }
                 Ok(())
             }
-            fn get(prop: $crate::relations::props::Prop<$cls>) -> $itemty {
+            fn get(mut prop: $crate::relations::props::Prop<$cls>) -> $itemty {
                 let $var = prop.$getter();
                 let $var = $expr;
                 $var

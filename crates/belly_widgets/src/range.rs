@@ -36,6 +36,24 @@ fn range(ctx: &mut WidgetContext, rng: &mut Range) {
     let holder = rng.holder;
     let low = rng.low_span;
     let hight = rng.high_span;
+
+    let test: belly_core::eml::Eml = eml! {
+        <span c:range>
+            <span c:range-back/>
+            <span {holder} c:range-holder s:flex-direction=managed()>
+                <span {low} c:range-low-internals
+                    s:min-height=managed()
+                    s:min-width=managed()>
+                    <span c:range-low/>
+                </span>
+                <slot define="separator"/>
+                <span {hight} c:range-high-internals>
+                    <span c:range-high/>
+                </span>
+            </span>
+        </span>
+    };
+
     ctx.render(eml! {
         <span c:range>
             <span c:range-back/>

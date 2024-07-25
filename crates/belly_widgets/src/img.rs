@@ -305,7 +305,7 @@ fn update_img_size(
                         let Ok(mut element) = elements.get_mut(*entity) else {
                             continue;
                         };
-                        let Some(asset) = assets.get(handle.clone()) else {
+                        let Some(asset) = assets.get(handle.clone().id()) else {
                             continue;
                         };
                         let asset_size = Vec2::new(asset.size().x as f32, asset.size().y as f32);

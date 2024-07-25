@@ -32,19 +32,19 @@ fn setup(mut commands: Commands) {
             <span c:controls>
                 <slider c:red
                     bind:value=to!(colorbox, BackgroundColor:0|r)
-                    bind:value=from!(colorbox, BackgroundColor:0.r())
+                    bind:value=from!(colorbox, BackgroundColor:0.to_linear().red)
                 />
                 <slider c:green
                     bind:value=to!(colorbox, BackgroundColor:0|g)
-                    bind:value=from!(colorbox, BackgroundColor:0.g())
+                    bind:value=from!(colorbox, BackgroundColor:0.to_linear().green)
                 />
                 <slider c:blue
                     bind:value=to!(colorbox, BackgroundColor:0|b)
-                    bind:value=from!(colorbox, BackgroundColor:0.b())
+                    bind:value=from!(colorbox, BackgroundColor:0.to_linear().blue)
                 />
                 <slider c:alpha
                     bind:value=to!(colorbox, BackgroundColor:0|a)
-                    bind:value=from!(colorbox, BackgroundColor:0.a())
+                    bind:value=from!(colorbox, BackgroundColor:0.alpha())
                 />
             </span>
             <img c:colorbox-holder src="trbg.png">

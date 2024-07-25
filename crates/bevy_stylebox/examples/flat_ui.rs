@@ -1,6 +1,6 @@
 // This example renders wrong.
 // See https://github.com/bevyengine/bevy/issues/9350
-use bevy::prelude::*;
+use bevy::{color::palettes::css::LIMEGREEN, prelude::*};
 use bevy_stylebox::*;
 
 // You can play with outer/inner radius to
@@ -32,7 +32,7 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
         slice: UiRect::all(Val::Percent(50.)),
         width: UiRect::all(Val::Px(OUTER_RADIUS)),
         texture: circle.clone(),
-        modulate: Color::DARK_GRAY.into(),
+        modulate: Srgba::gray(0.25).into(),
         ..default()
     };
     let box_round_bot_inner = Stylebox {
@@ -51,7 +51,7 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
         slice: UiRect::all(Val::Percent(50.)),
         width: UiRect::all(Val::Px(BUTTON_RADIUS)),
         texture: circle.clone(),
-        modulate: Color::DARK_GRAY,
+        modulate: Srgba::gray(0.25).into(),
         ..default()
     };
     commands.spawn(Camera2dBundle::default());
@@ -147,7 +147,7 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
                                 })
                                 .with_children(|parent| {
                                     parent.spawn(ImageBundle {
-                                        background_color: Color::DARK_GRAY.into(),
+                                        background_color: Srgba::gray(0.25).into(),
                                         image: UiImage {
                                             texture: asset_server.load("cross.png"),
                                             ..default()
@@ -190,7 +190,7 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
 
                             parent
                                 .spawn(NodeBundle {
-                                    background_color: Color::LIME_GREEN.into(),
+                                    background_color: LIMEGREEN.into(),
                                     style: Style {
                                         flex_grow: 1.,
                                         justify_content: JustifyContent::Center,

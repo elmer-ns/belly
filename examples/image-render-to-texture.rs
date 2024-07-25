@@ -83,7 +83,7 @@ fn setup_viewport(
     
     let cube_handle = meshes.add(Mesh::from(Cuboid::new(4.0, 4.0, 4.0)));
     let cube_material_handle = materials.add(StandardMaterial {
-        base_color: Color::rgb(0.8, 0.7, 0.6),
+        base_color: Color::srgb(0.8, 0.7, 0.6),
         reflectance: 0.02,
         unlit: false,
         ..default()
@@ -101,7 +101,7 @@ fn setup_viewport(
             ..default()
         },
         FirstPassViewport,
-        viewport_pass_layer,
+        viewport_pass_layer.clone(),
     ));
 
     // Light
@@ -125,7 +125,7 @@ fn setup_viewport(
                 .looking_at(Vec3::default(), Vec3::Y),
             ..default()
         })
-        .insert(viewport_pass_layer)
+        .insert(viewport_pass_layer.clone())
         // .insert(UiCameraConfig { show_ui: false })
         ;
 }
